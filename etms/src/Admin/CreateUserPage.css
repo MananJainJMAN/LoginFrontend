@@ -1,0 +1,273 @@
+.container {
+    max-width: 900px;
+    margin: auto;
+    padding: 20px;
+    text-align: center;
+  }
+  
+  .title {
+    margin-bottom: 20px;
+  }
+  
+  .create-user-btn {
+    margin-bottom: 20px;
+    padding: 10px 20px;
+    background-color: #5d79fb;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .create-user-btn:hover {
+    background-color: #475bc4;
+  }
+  
+  .overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .user-form {
+    background-color: white;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    text-align: left;
+    width: 50%;
+  }
+  
+  .form-group {
+    margin-bottom: 15px;
+  }
+  
+  label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 5px;
+  }
+  
+  input[type="email"],
+  input[type="text"] {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+  
+  .submit-btn, .cancel-btn {
+    width: 100%;
+    padding: 10px 0;
+    margin-top: 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .submit-btn {
+    background-color: #5d79fb;
+    color: white;
+  }
+  
+  .cancel-btn {
+    background-color: #ccc;
+  }
+  
+  .submit-btn:hover, .cancel-btn:hover {
+    background-color: #475bc4;
+  }
+  
+  .user-table {
+    margin-top: 20px;
+    text-align: left;
+  }
+  
+  table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  th, td {
+    padding: 10px;
+    border-bottom: 1px solid #000000;
+  }
+  
+  th {
+    background-color: #5d79fb;
+  }
+  
+  tr:hover {
+    background-color: #F8F6E3;
+  }
+  tr th {
+    color: white;
+  }
+  
+
+.icon {
+    cursor: pointer;
+    margin-right: 10px; /* Increase margin for gap between icons */
+    font-size: 24px; /* Increase icon size */
+  }
+  
+  .delete-icon {
+    color: #ff0000; /* Red color for delete icon */
+  }
+  
+  .edit-icon {
+    color: #007bff; /* Blue color for edit icon */
+  }
+  
+  .form-group {
+    margin-bottom: 20px;
+  }
+  
+  label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+  }
+  
+  select {
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+  
+  .submit-btn,
+  .cancel-btn {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    margin-top: 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .submit-btn {
+    background-color: #5d79fb;
+    color: #fff;
+  }
+  
+  .cancel-btn {
+    background-color: #ccc;
+    color: #000;
+  }
+  
+  /* CreateUserPage.css */
+@keyframes spin {
+    to { transform: rotate(360deg); }
+  }
+  
+  .loading-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 9999;
+  }
+  
+  .loading {
+    border: 4px solid rgba(0, 0, 0, 0.1);
+    border-left-color: #3498db;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    animation: spin 1s linear infinite;
+  }
+  
+  .success-message {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #dff0d8; /* Success message background color */
+  color: #3c763d; /* Success message text color */
+  padding: 10px;
+  margin-bottom: 10px;
+}
+
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent black background */
+    z-index: 1000; /* Ensure the overlay appears above other elements */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .error-message {
+    background-color: #f44336; /* Red background color for error message */
+    color: white; /* White text color */
+    padding: 20px;
+    border-radius: 5px;
+    text-align: center;
+    margin: auto;
+    position: relative;
+  }
+  
+  .error-icon {
+    margin-right: 5px;
+    position: absolute;
+    top: 50%;
+    left: 10px;
+    transform: translateY(-50%);
+  }
+  
+  .close-error {
+    background-color: transparent;
+    color: white;
+    border: none;
+    cursor: pointer;
+    position: absolute;
+    top: 50%;
+    right: 10px;
+    margin-left: 10%;
+    transform: translateY(-50%);
+  }
+  
+.tick-icon,
+.error-icon {
+  margin-right: 5px;
+}
+
+.loading-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 10px;
+}
+
+.loading {
+  border: 4px solid #f3f3f3;
+  border-top: 4px solid #3498db; /* Loading animation color */
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
