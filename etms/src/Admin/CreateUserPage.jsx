@@ -15,6 +15,9 @@ const CreateUserPage = () => {
   const [isSuccess, setIsSuccess] = useState(false); // Success state
   const [error, setError] = useState(null); // Error state
   const [users, setUsers] = useState([]); // User state
+  const [searchTerm, setSearchTerm] = useState(''); // State for search term
+  const [filterRole, setFilterRole] = useState(''); // State for filtering by role
+
 
   useEffect(() => {
     const fetchUsers = async () => {
@@ -78,9 +81,36 @@ const CreateUserPage = () => {
     }
   };
 
+// Filter users based on search term and role
+const filteredUsers = users.filter(user => {
+  return (
+    user && user.email && user.email.toLowerCase().includes(searchTerm.toLowerCase()) && // Check if user and email are defined
+    (filterRole === '' || user.role === filterRole)
+  );
+});
+
   return (
     <div className="container">
       <h1 className="title">Manage Users</h1>
+
+      {/* Search and filter section */}
+      <div className="search-filter">
+        <input
+          type="text"
+          placeholder="Search by email..."
+          value={searchTerm}
+          onChange={(e) => setSearchTerm(e.target.value)}
+        />
+        <select
+          value={filterRole}
+          onChange={(e) => setFilterRole(e.target.value)}
+        >
+          <option value="">Filter by Role</option>
+          <option value="Admin">Admin</option>
+          <option value="Employee">Employee</option>
+        </select>
+      </div>
+
 
  {/* Circular create user button */}
  <button className="create-user-btn" onClick={() => setShowForm(true)}>Create User</button>
@@ -160,37 +190,54 @@ const CreateUserPage = () => {
   </div>
 )}
 
-      {/* Table-like structure for displaying created users */}
-      <div className="user-table">
-        <h2>Created Users</h2>
-        <table>
-          <thead>
-            <tr>
-              <th>Email</th>
-              <th>Role</th>
-              <th>Department</th>
-              <th>Action</th> {/* New column for delete button */}
-            </tr>
-          </thead>
-          <tbody>
-          {users.map((user) => (
-    user ? (
-      <tr key={user._id}>
-        <td>{user.email || 'N/A'}</td>
-        <td>{user.role || 'N/A'}</td>
-        <td>{user.department || 'N/A'}</td>
-        <td>
-          <button className="delete-btn" onClick={() => handleDelete(user._id)}>
-            <AiFillDelete />
-          </button>
-        </td>
+{/* Table-like structure for displaying created users */}
+<div className="user-table">
+  <h2>Created Users</h2>
+  <table>
+    <thead>
+      <tr>
+        <th>Email</th>
+        <th>Role</th>
+        <th>Department</th>
+        <th>Action</th> {/* New column for delete button */}
       </tr>
-    ) : null
-  ))}
+    </thead>
+    <tbody>
+      {searchTerm === '' ?
+        users.map((user) => (
+          user && user._id && ( // Check if user and user._id are defined
+            <tr key={user._id}>
+              <td>{user.email || 'N/A'}</td>
+              <td>{user.role || 'N/A'}</td>
+              <td>{user.department || 'N/A'}</td>
+              <td>
+                <button className="delete-btn" onClick={() => handleDelete(user._id)}>
+                  <AiFillDelete />
+                </button>
+              </td>
+            </tr>
+          )
+        ))
+        :
+        filteredUsers.map((user) => (
+          user && user._id && ( // Check if user and user._id are defined
+            <tr key={user._id}>
+              <td>{user.email || 'N/A'}</td>
+              <td>{user.role || 'N/A'}</td>
+              <td>{user.department || 'N/A'}</td>
+              <td>
+                <button className="delete-btn" onClick={() => handleDelete(user._id)}>
+                  <AiFillDelete />
+                </button>
+              </td>
+            </tr>
+          )
+        ))
+      }
+    </tbody>
+  </table>
+</div>
 
-          </tbody>
-        </table>
-      </div>
     </div>
   );
 };

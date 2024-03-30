@@ -23,7 +23,6 @@ import MenuBookIcon from '@mui/icons-material/MenuBook';
 import AssessmentIcon from '@mui/icons-material/Assessment';
 import LogoutIcon from '@mui/icons-material/Logout';
 import ModelTrainingSharpIcon from '@mui/icons-material/ModelTrainingSharp';
-import CreateUserPage from './CreateUserPage'; // Import the CreateUserPage component
 import {useNavigate} from 'react-router-dom'
 import Cookies from 'js-cookie';
 const drawerWidth = 240;
@@ -137,7 +136,6 @@ const MiniDrawer = () => {
 
   // Define pages for each option in the drawer
   const pages = {
-    'Create User': <CreateUserPage />,
     'Training Plan': <div>Training Plan Page</div>,
     'Training Module': <div>Training Module Page</div>,
     'Assessment Score': <div>Assessment Score Page</div>,
@@ -147,7 +145,7 @@ const MiniDrawer = () => {
   const defaultMessage = (
     <Box sx={{ textAlign: 'center', mt: 5 }}>
       <Typography variant="h5" gutterBottom>
-        Welcome Admin!!
+        Welcome Employee!!
       </Typography>
       <Typography variant="body1">
         Please select a module from the sidebar to get started.
@@ -173,7 +171,7 @@ const MiniDrawer = () => {
             <MenuIcon />
           </IconButton>
           <Typography variant="h6" noWrap component="div">
-            Admin
+            Employee
           </Typography>
         </Toolbar>
       </AppBar>

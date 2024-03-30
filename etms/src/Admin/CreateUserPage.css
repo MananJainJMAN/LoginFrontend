@@ -271,3 +271,31 @@
   0% { transform: rotate(0deg); }
   100% { transform: rotate(360deg); }
 }
+
+
+/* Search and filter section */
+.search-filter {
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+}
+
+/* Search input */
+.search-filter input[type="text"] {
+  padding: 8px;
+  border: 1px solid #5d79fb;
+  border-radius: 5px;
+  margin-right: 10px;
+
+}
+
+/* Filter select */
+.search-filter select {
+  padding: 8px;
+  border: 1px solid #5d79fb;
+  border-radius: 5px;
+  background-color: #fff;
+  color: #5d79fb;
+  width: 200px;
+}
+
