@@ -1,0 +1,117 @@
+.container {
+    max-width: 900px;
+    margin: auto;
+    padding: 20px;
+    text-align: center;
+  }
+  
+  .title {
+    margin-bottom: 20px;
+  }
+  
+  .create-module-btn {
+    margin-bottom: 20px;
+    padding: 10px 20px;
+    background-color: #5d79fb;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .create-module-btn:hover {
+    background-color: #475bc4;
+  }
+  
+  .overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .module-form {
+    background-color: white;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    text-align: left;
+    width: 50%;
+  }
+  
+  .form-group {
+    margin-bottom: 15px;
+  }
+  
+  label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 5px;
+  }
+  
+  input[type="text"],
+  input[type="url"] {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+  
+  .submit-btn,
+  .cancel-btn {
+    width: 100%;
+    padding: 10px;
+    margin-top: 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .submit-btn {
+    background-color: #5d79fb;
+    color: white;
+  }
+  
+  .cancel-btn {
+    background-color: #ccc;
+    color: black;
+  }
+  
+  .submit-btn:hover,
+  .cancel-btn:hover {
+    background-color: #475bc4;
+  }
+  
+  .module-table {
+    margin-top: 20px;
+    text-align: left;
+  }
+  
+  table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  th,
+  td {
+    padding: 10px;
+    border-bottom: 1px solid #000000;
+  }
+  
+  th {
+    background-color: #5d79fb;
+    color: white;
+  }
+  
+  tr:hover {
+    background-color: #f8f6e3;
+  }
+  
+  

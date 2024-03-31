@@ -24,6 +24,7 @@ import AssessmentIcon from '@mui/icons-material/Assessment';
 import LogoutIcon from '@mui/icons-material/Logout';
 import ModelTrainingSharpIcon from '@mui/icons-material/ModelTrainingSharp';
 import CreateUserPage from './CreateUserPage'; // Import the CreateUserPage component
+import TrainingModulePage from './TrainingModulePage'
 import {useNavigate} from 'react-router-dom'
 import Cookies from 'js-cookie';
 const drawerWidth = 240;
@@ -139,7 +140,7 @@ const MiniDrawer = () => {
   const pages = {
     'Create User': <CreateUserPage />,
     'Training Plan': <div>Training Plan Page</div>,
-    'Training Module': <div>Training Module Page</div>,
+    'Training Module': <TrainingModulePage/>,
     'Assessment Score': <div>Assessment Score Page</div>,
   };
 
