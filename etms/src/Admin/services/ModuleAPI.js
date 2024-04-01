@@ -1,11 +1,15 @@
 import axios from 'axios';
 
-const BASE_URL = '/api'; // Assuming your API is served from /api endpoint
+const baseURL = 'http://localhost:5000'; // Replace with your backend URL
+
+const axiosInstance = axios.create({
+  baseURL,
+});
 
 // Create a new training module
 export const createModule = async (moduleData) => {
   try {
-    const response = await axios.post(`${BASE_URL}/modules`, moduleData);
+    const response = await axiosInstance.post('/admin/training-modules', moduleData);
     return response.data;
   } catch (error) {
     throw new Error(error.response.data.message);
@@ -15,8 +19,10 @@ export const createModule = async (moduleData) => {
 // Get all training modules
 export const getModules = async () => {
   try {
-    const response = await axios.get(`${BASE_URL}/modules`);
+    const response = await axiosInstance.get('/admin/training-modules');
+
     return response.data;
+    
   } catch (error) {
     throw new Error(error.response.data.message);
   }
@@ -25,7 +31,7 @@ export const getModules = async () => {
 // Get a single training module by ID
 export const getModuleById = async (moduleID) => {
   try {
-    const response = await axios.get(`${BASE_URL}/modules/${moduleID}`);
+    const response = await axios.get('/admin/training-modules');
     return response.data;
   } catch (error) {
     throw new Error(error.response.data.message);
@@ -35,7 +41,7 @@ export const getModuleById = async (moduleID) => {
 // Update a training module
 export const updateModule = async (moduleID, moduleData) => {
   try {
-    const response = await axios.put(`${BASE_URL}/modules/${moduleID}`, moduleData);
+    const response = await axiosInstance.put(`/admin/training-modules/${moduleID}`, moduleData);
     return response.data;
   } catch (error) {
     throw new Error(error.response.data.message);
@@ -45,7 +51,7 @@ export const updateModule = async (moduleID, moduleData) => {
 // Delete a training module
 export const deleteModule = async (moduleID) => {
   try {
-    const response = await axios.delete(`${BASE_URL}/modules/${moduleID}`);
+    const response = await axiosInstance.delete(`/admin/training-modules/${moduleID}`);
     return response.data;
   } catch (error) {
     throw new Error(error.response.data.message);

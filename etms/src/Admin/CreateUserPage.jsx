@@ -28,10 +28,10 @@ const CreateUserPage = () => {
         console.error('Error fetching users:', error.message);
       }
     };
-  
+
     fetchUsers();
   }, [users]); // Include users in the dependency array
-  
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     setIsLoading(true); // Set loading state to true
@@ -45,7 +45,7 @@ const CreateUserPage = () => {
         department: '',
       });
       setShowForm(false);
-  
+
       // Update users state to include the newly created user
       setUsers(prevUsers => [...prevUsers, response.data]);
     } catch (error) {
@@ -59,7 +59,7 @@ const CreateUserPage = () => {
       }, 3000);
     }
   };
-  
+
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -69,7 +69,7 @@ const CreateUserPage = () => {
     }));
   };
 
-  
+
   const handleDelete = async (userId) => {
     try {
       await deleteUser(userId);
@@ -81,13 +81,13 @@ const CreateUserPage = () => {
     }
   };
 
-// Filter users based on search term and role
-const filteredUsers = users.filter(user => {
-  return (
-    user && user.email && user.email.toLowerCase().includes(searchTerm.toLowerCase()) && // Check if user and email are defined
-    (filterRole === '' || user.role === filterRole)
-  );
-});
+  // Filter users based on search term and role
+  const filteredUsers = users.filter(user => {
+    return (
+      user && user.email && user.email.toLowerCase().includes(searchTerm.toLowerCase()) && // Check if user and email are defined
+      (filterRole === '' || user.role === filterRole)
+    );
+  });
 
   return (
     <div className="container">
@@ -112,131 +112,131 @@ const filteredUsers = users.filter(user => {
       </div>
 
 
- {/* Circular create user button */}
- <button className="create-user-btn" onClick={() => setShowForm(true)}>Create User</button>
+      {/* Circular create user button */}
+      <button className="create-user-btn" onClick={() => setShowForm(true)}>Create User</button>
 
-{/* Form for creating user */}
-{showForm && (
-  <div className="overlay">
-    <form className="user-form" onSubmit={handleSubmit}>
-      <h2>Create User</h2>
-      <div className="form-group">
-        <label htmlFor="email">Email:</label>
-        <input 
-          type="email" 
-          id="email" 
-          name="email" 
-          value={formData.email} 
-          onChange={handleChange} 
-          required 
-        />
-      </div>
-      <div className="form-group">
-        <label htmlFor="role">Role:</label>
-        <select 
-          id="role" 
-          name="role" 
-          value={formData.role} 
-          onChange={handleChange} 
-          required 
-        >
-          <option value="">Select Role</option>
-          <option value="Admin">Admin</option>
-          <option value="Employee">Employee</option>
-        </select>
-      </div>
-      <div className="form-group">
-        <label htmlFor="department">Department:</label>
-        <select 
-          id="department" 
-          name="department" 
-          value={formData.department} 
-          onChange={handleChange} 
-          required 
-        >
-          <option value="">Select Department</option>
-          <option value="IT">IT</option>
-          <option value="Finance">Finance</option>
-          <option value="HR">HR</option>
-        </select>
-      </div>
-      <button type="submit" className="submit-btn">Create User</button>
-      <button type="button" className="cancel-btn" onClick={() => setShowForm(false)}>Cancel</button>
-    </form>
-  </div>
-)}
+      {/* Form for creating user */}
+      {showForm && (
+        <div className="overlay">
+          <form className="user-form" onSubmit={handleSubmit}>
+            <h2>Create User</h2>
+            <div className="form-group">
+              <label htmlFor="email">Email:</label>
+              <input
+                type="email"
+                id="email"
+                name="email"
+                value={formData.email}
+                onChange={handleChange}
+                required
+              />
+            </div>
+            <div className="form-group">
+              <label htmlFor="role">Role:</label>
+              <select
+                id="role"
+                name="role"
+                value={formData.role}
+                onChange={handleChange}
+                required
+              >
+                <option value="">Select Role</option>
+                <option value="Admin">Admin</option>
+                <option value="Employee">Employee</option>
+              </select>
+            </div>
+            <div className="form-group">
+              <label htmlFor="department">Department:</label>
+              <select
+                id="department"
+                name="department"
+                value={formData.department}
+                onChange={handleChange}
+                required
+              >
+                <option value="">Select Department</option>
+                <option value="IT">IT</option>
+                <option value="Finance">Finance</option>
+                <option value="HR">HR</option>
+              </select>
+            </div>
+            <button type="submit" className="submit-btn">Create User</button>
+            <button type="button" className="cancel-btn" onClick={() => setShowForm(false)}>Cancel</button>
+          </form>
+        </div>
+      )}
 
-{/* Loading animation */}
-{isLoading && (
-  <div className="loading-container">
-    <div className="loading"></div>
-  </div>
-)}
+      {/* Loading animation */}
+      {isLoading && (
+        <div className="loading-container">
+          <div className="loading"></div>
+        </div>
+      )}
 
-{/* Success message */}
-{isSuccess && (
-  <div className="success-message">
-    <RiCheckLine className="tick-icon" />
-    User created successfully
-  </div>
-)}
+      {/* Success message */}
+      {isSuccess && (
+        <div className="success-message">
+          <RiCheckLine className="tick-icon" />
+          User created successfully
+        </div>
+      )}
 
-{/* Error message */}
-{error && (
-  <div className="overlay">
-    <div className="error-message">
-      {error}
-    </div>
-  </div>
-)}
+      {/* Error message */}
+      {error && (
+        <div className="overlay">
+          <div className="error-message">
+            {error}
+          </div>
+        </div>
+      )}
 
-{/* Table-like structure for displaying created users */}
-<div className="user-table">
-  <h2>Created Users</h2>
-  <table>
-    <thead>
-      <tr>
-        <th>Email</th>
-        <th>Role</th>
-        <th>Department</th>
-        <th>Action</th> {/* New column for delete button */}
-      </tr>
-    </thead>
-    <tbody>
-      {searchTerm === '' ?
-        users.map((user) => (
-          user && user._id && ( // Check if user and user._id are defined
-            <tr key={user._id}>
-              <td>{user.email || 'N/A'}</td>
-              <td>{user.role || 'N/A'}</td>
-              <td>{user.department || 'N/A'}</td>
-              <td>
-                <button className="delete-btn" onClick={() => handleDelete(user._id)}>
-                  <AiFillDelete />
-                </button>
-              </td>
+      {/* Table-like structure for displaying created users */}
+      <div className="user-table">
+        <h2>Created Users</h2>
+        <table>
+          <thead>
+            <tr>
+              <th>Email</th>
+              <th>Role</th>
+              <th>Department</th>
+              <th>Action</th> {/* New column for delete button */}
             </tr>
-          )
-        ))
-        :
-        filteredUsers.map((user) => (
-          user && user._id && ( // Check if user and user._id are defined
-            <tr key={user._id}>
-              <td>{user.email || 'N/A'}</td>
-              <td>{user.role || 'N/A'}</td>
-              <td>{user.department || 'N/A'}</td>
-              <td>
-                <button className="delete-btn" onClick={() => handleDelete(user._id)}>
-                  <AiFillDelete />
-                </button>
-              </td>
-            </tr>
-          )
-        ))
-      }
-    </tbody>
-  </table>
-</div>
+          </thead>
+          <tbody>
+            {searchTerm === '' ?
+              users.map((user) => (
+                user && user._id && ( // Check if user and user._id are defined
+                  <tr key={user._id}>
+                    <td>{user.email || 'N/A'}</td>
+                    <td>{user.role || 'N/A'}</td>
+                    <td>{user.department || 'N/A'}</td>
+                    <td>
+                      <button className="delete-btn" onClick={() => handleDelete(user._id)}>
+                        <AiFillDelete />
+                      </button>
+                    </td>
+                  </tr>
+                )
+              ))
+              :
+              filteredUsers.map((user) => (
+                user && user._id && ( // Check if user and user._id are defined
+                  <tr key={user._id}>
+                    <td>{user.email || 'N/A'}</td>
+                    <td>{user.role || 'N/A'}</td>
+                    <td>{user.department || 'N/A'}</td>
+                    <td>
+                      <button className="delete-btn" onClick={() => handleDelete(user._id)}>
+                        <AiFillDelete />
+                      </button>
+                    </td>
+                  </tr>
+                )
+              ))
+            }
+          </tbody>
+        </table>
+      </div>
 
     </div>
   );
