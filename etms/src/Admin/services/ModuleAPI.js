@@ -31,7 +31,7 @@ export const getModules = async () => {
 // Get a single training module by ID
 export const getModuleById = async (moduleID) => {
   try {
-    const response = await axios.get('/admin/training-modules');
+    const response = await axiosInstance.get('/admin/training-modules');
     return response.data;
   } catch (error) {
     throw new Error(error.response.data.message);

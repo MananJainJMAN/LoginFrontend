@@ -25,6 +25,8 @@ import LogoutIcon from '@mui/icons-material/Logout';
 import ModelTrainingSharpIcon from '@mui/icons-material/ModelTrainingSharp';
 import CreateUserPage from './CreateUserPage'; // Import the CreateUserPage component
 import TrainingModulePage from './TrainingModulePage'
+import TrainingPlanPage from './TrainingPlanPage';
+import TrainingAssessmentPage from './TrainingAssessment';
 import {useNavigate} from 'react-router-dom'
 import Cookies from 'js-cookie';
 const drawerWidth = 240;
@@ -139,9 +141,9 @@ const MiniDrawer = () => {
   // Define pages for each option in the drawer
   const pages = {
     'Create User': <CreateUserPage />,
-    'Training Plan': <div>Training Plan Page</div>,
+    'Training Plan': <TrainingPlanPage/>,
     'Training Module': <TrainingModulePage/>,
-    'Assessment Score': <div>Assessment Score Page</div>,
+    'Assessment Score': <TrainingAssessmentPage/>,
   };
 
   // Message to be displayed when no module is clicked

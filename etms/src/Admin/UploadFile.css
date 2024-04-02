@@ -1,0 +1,104 @@
+.upload-container {
+    width: 80%;
+    margin-top: 20vh; /* Center the container horizontally */
+    margin-bottom: 20vh;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 20px;
+    border: 2px dashed #ccc;
+    border-radius: 10px;
+    text-align: center;
+}
+.dragging {
+    border-color: #007bff;
+}
+
+.close-icon {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    cursor: pointer;
+    color: #777;
+}
+
+.upload-title {
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+.file-input-container {
+    margin-bottom: 20px;
+}
+
+.file-input {
+    display: none;
+}
+
+.upload-text {
+    font-size: 18px;
+    color: #777;
+    cursor: pointer;
+}
+
+.file-info {
+    margin-bottom: 20px;
+}
+
+.file-info p {
+    margin: 5px 0;
+    font-size: 16px;
+    color: #555;
+}
+
+.button-container {
+    margin-top: 20px;
+}
+
+.upload-button {
+    padding: 10px 20px;
+    font-size: 18px;
+    background-color: #5d7afb86;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.upload-button:hover {
+    background-color: #5d79fb;
+}
+
+
+.error-message,
+.success-message {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #ffcccc; /* Light red for error, you can change it */
+  color: #ff0000; /* Red color for error text */
+  padding: 10px;
+  border-radius: 5px;
+  margin-bottom: 10px;
+}
+
+.success-message {
+  background-color: #ccffcc; /* Light green for success, you can change it */
+  color: #008000; /* Green color for success text */
+}
+
+.error-message p,
+.success-message p {
+  margin: 0;
+}
+
+.error-message svg,
+.success-message svg {
+  cursor: pointer;
+}
+.plus-icon {
+    font-size: 24px;
+    cursor: pointer;
+    margin-right: 10px; /* Adjust as needed */
+  }
+  
