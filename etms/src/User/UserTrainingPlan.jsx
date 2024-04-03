@@ -65,7 +65,7 @@ const UserTrainingPlanPage = () => {
                     start: start,
                     end: end,
                     resource: plan,
-                    tooltip: `Time: ${formattedStartTime} - ${formattedEndTime} PM \nDuration: ${diffInDays} ${formattedDays} and ${remainingHours} ${formattedHours}\nDescription: ${plan.description}`,
+                    tooltip: `Time: ${formattedStartTime} - ${formattedEndTime}  \nDuration: ${diffInDays} ${formattedDays} and ${remainingHours} ${formattedHours}\nDescription: ${plan.description}`,
                 };
             }
         });
@@ -74,7 +74,7 @@ const UserTrainingPlanPage = () => {
 
     return (
         <div>
-            <h1>User Training Plan</h1>
+            <h1>Your Training Plan</h1>
             <div style={{ height: 500 }}>
                 <Calendar
                     localizer={localizer}

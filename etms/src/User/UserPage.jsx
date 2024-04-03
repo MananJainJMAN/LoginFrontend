@@ -26,6 +26,7 @@ import ModelTrainingSharpIcon from '@mui/icons-material/ModelTrainingSharp';
 import {useNavigate} from 'react-router-dom'
 import Cookies from 'js-cookie';
 import UserTrainingPlan from './UserTrainingPlan'
+import UserModulePage from './UserModulePage'
 const drawerWidth = 240;
 
 const openedMixin = (theme) => ({
@@ -138,7 +139,7 @@ const MiniDrawer = () => {
   // Define pages for each option in the drawer
   const pages = {
     'Training Plan': <UserTrainingPlan/>,
-    'Training Module': <div>Training Module Page</div>,
+    'Training Module': <UserModulePage/>,
     'Assessment Score': <div>Assessment Score Page</div>,
   };
 
