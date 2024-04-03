@@ -27,6 +27,8 @@ import {useNavigate} from 'react-router-dom'
 import Cookies from 'js-cookie';
 import UserTrainingPlan from './UserTrainingPlan'
 import UserModulePage from './UserModulePage'
+import ScoreIcon from '@mui/icons-material/Score';
+import AssessmentScore from './AssessmentScore'
 const drawerWidth = 240;
 
 const openedMixin = (theme) => ({
@@ -140,7 +142,7 @@ const MiniDrawer = () => {
   const pages = {
     'Training Plan': <UserTrainingPlan/>,
     'Training Module': <UserModulePage/>,
-    'Assessment Score': <div>Assessment Score Page</div>,
+    'Assessment Score': <AssessmentScore/>,
   };
 
   // Message to be displayed when no module is clicked
@@ -212,7 +214,7 @@ const MiniDrawer = () => {
                 >
                   {index === 0 && <EventNoteIcon />}
                   {index === 1 && <ViewModuleIcon />}
-                  {index === 2 && <MenuBookIcon />}
+                  {index === 2 && <ScoreIcon />}
                   {index === 3 && <AssessmentIcon />}
                 </ListItemIcon>
                 <ListItemText primary={text} sx={{ opacity: open ? 1 : 0 }} />

@@ -1,0 +1,77 @@
+.card-assessment {
+    background-color: #eee;
+    box-sizing: border-box;
+    float: left;
+    height: 10em;
+    margin: 0.5em;
+    padding: 1em;
+    position: relative;
+    width: 20em;
+    border-radius: 5px;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  .progress-assessment {
+    bottom: 0;
+    left: 0;
+    position: absolute;
+    top: 0;
+  }
+  
+  .content-assessment {
+    position: relative;
+  }
+  
+  .percentage-assessment {
+    text-align: right;
+    transition: transform 0.3s ease-in-out; /* Add transition for transform property */
+    display: inline-block; /* Ensure the element is treated as a block element */
+  }
+  
+  .message-assessment {
+    font-weight: bold;
+  }
+  
+  .good-score-assessment .progress-assessment {
+    background-color: #4caf4f88; /* Green color for good score */
+  }
+  
+  .bad-score-assessment .progress-assessment {
+    background-color: #f4433685; /* Red color for bad score */
+  }
+  
+  .good-score-assessment .percentage-assessment {
+    color: #26be30; /* Green color for good score */
+  }
+  
+  .bad-score-assessment .percentage-assessment {
+    color: #f44336; /* Red color for bad score */
+  }
+  
+  .good-score-assessment .message-assessment {
+    color: #000000; /* Green color for good score */
+  }
+  
+  .bad-score-assessment .message-assessment {
+    color: #000000; /* Red color for bad score */
+  }
+  
+  /* Add hover effect for percentage */
+  .percentage-assessment:hover {
+    transform: scale(2.1); /* Increase size on hover */
+    transform-origin: center; /* Set transform origin to the center */
+  }
+  
+  @keyframes slideIn {
+    0% {
+      background-color: #abc;
+      width: 0;
+    }
+    100% {
+      background-color: #def;
+      width: 100%;
+    }
+  }
+
+  
+  
