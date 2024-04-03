@@ -17,7 +17,7 @@ import ListItemButton from '@mui/material/ListItemButton';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
 import Avatar from '@mui/material/Avatar';
-import PersonAddIcon from '@mui/icons-material/PersonAdd';
+import ViewModuleIcon from '@mui/icons-material/ViewModule';
 import EventNoteIcon from '@mui/icons-material/EventNote';
 import MenuBookIcon from '@mui/icons-material/MenuBook';
 import AssessmentIcon from '@mui/icons-material/Assessment';
@@ -25,6 +25,7 @@ import LogoutIcon from '@mui/icons-material/Logout';
 import ModelTrainingSharpIcon from '@mui/icons-material/ModelTrainingSharp';
 import {useNavigate} from 'react-router-dom'
 import Cookies from 'js-cookie';
+import UserTrainingPlan from './UserTrainingPlan'
 const drawerWidth = 240;
 
 const openedMixin = (theme) => ({
@@ -136,7 +137,7 @@ const MiniDrawer = () => {
 
   // Define pages for each option in the drawer
   const pages = {
-    'Training Plan': <div>Training Plan Page</div>,
+    'Training Plan': <UserTrainingPlan/>,
     'Training Module': <div>Training Module Page</div>,
     'Assessment Score': <div>Assessment Score Page</div>,
   };
@@ -208,8 +209,8 @@ const MiniDrawer = () => {
                     justifyContent: 'center',
                   }}
                 >
-                  {index === 0 && <PersonAddIcon />}
-                  {index === 1 && <EventNoteIcon />}
+                  {index === 0 && <EventNoteIcon />}
+                  {index === 1 && <ViewModuleIcon />}
                   {index === 2 && <MenuBookIcon />}
                   {index === 3 && <AssessmentIcon />}
                 </ListItemIcon>
