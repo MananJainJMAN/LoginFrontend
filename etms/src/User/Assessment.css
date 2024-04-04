@@ -83,3 +83,28 @@
     width: 100%;
   }
 }
+
+.checkbox-label {
+  margin-right: 10px; /* Adjust margin for spacing between checkboxes */
+  font-size: 20px; /* Adjust font size */
+  color: #5d79fb; /* Adjust text color */
+  cursor: pointer; /* Change cursor to pointer on hover */
+}
+
+.checkbox-label input {
+  margin-right: 5px; /* Adjust margin for spacing between checkbox and label text */
+}
+
+.asess-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.search-bar {
+  flex-grow: 1; /* Allow the search bar to take up remaining space */
+}
+
+.select-field {
+  margin-left: 10px; /* Adjust margin between search bar and select field */
+}

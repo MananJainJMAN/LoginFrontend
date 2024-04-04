@@ -3,10 +3,14 @@ import axios from 'axios';
 import { jwtDecode } from "jwt-decode";
 import './Assessment.css';
 import Cookies from 'js-cookie';
+import AssessmentCard from './AsessmentCard';
 
 const UserDashboard = () => {
   const [assessmentData, setAssessmentData] = useState([]);
   const [moduleNames, setModuleNames] = useState({});
+  const [searchQuery, setSearchQuery] = useState('');
+  const [selectedColor, setSelectedColor] = useState('all'); // Add state for selected color
+  const [isLoading, setIsLoading] = useState(true); // Add loading state
 
   useEffect(() => {
     const fetchAssessmentData = async () => {
@@ -34,6 +38,7 @@ const UserDashboard = () => {
         }
       }));
       setModuleNames(names);
+      setIsLoading(false); // Set loading state to false after fetching module names
     };
 
     if (assessmentData.length > 0) {
@@ -48,7 +53,7 @@ const UserDashboard = () => {
     // Check if token exists
     if (token) {
       // Decode the JWT token to get the payload
-      const decodedToken =jwtDecode(token);
+      const decodedToken = jwtDecode(token);
 
       // Extract user ID from the decoded token
       const userId = decodedToken.id; // Assuming the user ID is stored as 'id' in the token payload
@@ -67,21 +72,47 @@ const UserDashboard = () => {
     return storedToken;
   };
 
+  // Filter assessment data based on module name and selected color
+  const filteredAssessments = assessmentData.filter(assessment =>
+    (moduleNames[assessment.moduleId]?.toLowerCase().includes(searchQuery.toLowerCase()) || searchQuery === '') &&
+    (selectedColor === 'all' || (assessment.score >= 75 && selectedColor === 'green') || (assessment.score < 75 && selectedColor === 'red'))
+  );
+
+  if (isLoading) {
+    return <div>Loading...</div>; // Render loading indicator while fetching data
+  }
+
   return (
     <div>
       <h1>Your Scores</h1>
-      {assessmentData.map((assessment, index) => (
-        <div key={index} className={`card-assessment ${assessment.score >= 75 ? 'good-score-assessment' : 'bad-score-assessment'}`}>
-          <div className="progress-assessment" style={{ width: `${assessment.score}%`, height: "100%" }}></div>
-          <div className="content-assessment">
-            <h3>{moduleNames[assessment.moduleId]}</h3>
-            <p className="message-assessment">{assessment.score >= 75 ? 'You are doing well in this module' : 'Focus more on this module'}</p>
-            <h4 className="percentage-assessment">{assessment.score}/{assessment.totalScore}</h4>
-          </div>
-        </div>
+      <div className="asess-container">
+        <input
+          className="search-bar"
+          type="text"
+          placeholder="Search by module name"
+          value={searchQuery}
+          onChange={(e) => setSearchQuery(e.target.value)}
+        />
+        <select
+          className="select-field"
+          value={selectedColor}
+          onChange={(e) => setSelectedColor(e.target.value)}
+        >
+          <option value="all">All</option>
+          <option value="green">Pass</option>
+          <option value="red">Fail</option>
+        </select>
+      </div>
+      {filteredAssessments.map((assessment, index) => (
+        <AssessmentCard
+          key={index}
+          assessment={assessment}
+          moduleName={moduleNames[assessment.moduleId]}
+        />
       ))}
     </div>
   );
+  
 };
 
 export default UserDashboard;
