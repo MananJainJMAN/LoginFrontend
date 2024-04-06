@@ -165,6 +165,47 @@ const TrainingPlanPage = () => {
         );
     });
 
+
+    
+    const isDateConflict = (startDate, endDate) => {
+        const newStartDate = new Date(startDate);
+        const newEndDate = new Date(endDate);
+
+        // Check for conflicts with existing plans
+        return plans.some(plan => {
+            const existingStartDate = new Date(plan.startDate);
+            const existingEndDate = new Date(plan.endDate);
+
+            // Check if new dates overlap with existing plan's dates
+            return (
+                (newStartDate >= existingStartDate && newStartDate <= existingEndDate) ||
+                (newEndDate >= existingStartDate && newEndDate <= existingEndDate) ||
+                (newStartDate <= existingStartDate && newEndDate >= existingEndDate)
+            );
+        });
+    };
+
+    const handleStartDateChange = (e) => {
+        const { value } = e.target;
+        const isConflict = isDateConflict(value, formData.endDate);
+        setFormData(prevData => ({
+            ...prevData,
+            startDate: value,
+            endDate: isConflict ? '' : prevData.endDate
+        }));
+    };
+
+    const handleEndDateChange = (e) => {
+        const { value } = e.target;
+        const isConflict = isDateConflict(formData.startDate, value);
+        setFormData(prevData => ({
+            ...prevData,
+            endDate: value,
+            startDate: isConflict ? '' : prevData.startDate
+        }));
+    };
+
+
     return (
         <div className="container">
             <h1 className="title">Manage Training Plans</h1>
@@ -185,87 +226,96 @@ const TrainingPlanPage = () => {
             {/* Form for creating plan */}
             {showForm && (
                 <div className="overlay">
-                    <form className="plan-form" onSubmit={handleSubmit}>
-                        <h2>Create Plan</h2>
-                        <div className="form-group">
-                            <label htmlFor="planName">Plan Name:</label>
-                            <input
-                                type="text"
-                                id="planName"
-                                name="planName"
-                                value={formData.planName}
-                                onChange={handleChange}
-                                required
-                            />
-                        </div>
-                        <div className="form-group">
-                            <label htmlFor="department">Department:</label>
-                            <select
-                                id="department"
-                                name="department"
-                                value={formData.department}
-                                onChange={handleChange}
-                                required
-                            >
-                                <option value="">Select Department</option>
-                                <option value="HR">HR</option>
-                                <option value="IT">IT</option>
-                                <option value="Finance">Finance</option>
-                                <option value="Marketing">Marketing</option>
-                            </select>
-                        </div>
-                        <div className="form-group">
-                            <label htmlFor="description">Description:</label>
-                            <input
-                                type="text"
-                                id="description"
-                                name="description"
-                                value={formData.description}
-                                onChange={handleChange}
-                                required
-                            />
-                        </div>
-                        <div className="form-group">
-                            <label htmlFor="moduleID">Module:</label>
-                            <select
-                                id="moduleID"
-                                name="moduleID"
-                                value={formData.moduleID}
-                                onChange={handleChange}
-                                required
-                            >
-                                <option value="">Select Module</option>
-                                {modules.map(module => (
-                                    <option key={module._id} value={module._id}>{module.moduleName}</option>
-                                ))}
-                            </select>
-                        </div>
-                        <div className="form-group">
-                            <label htmlFor="startDate">Start Date:</label>
-                            <input
-                                type="datetime-local"
-                                id="startDate"
-                                name="startDate"
-                                value={formData.startDate}
-                                onChange={handleChange}
-                                required
-                            />
-                        </div>
-                        <div className="form-group">
-                            <label htmlFor="endDate">End Date:</label>
-                            <input
-                                type="datetime-local"
-                                id="endDate"
-                                name="endDate"
-                                value={formData.endDate}
-                                onChange={handleChange}
-                                required
-                            />
-                        </div>
+<form className="plan-form" onSubmit={handleSubmit}>
+  <h2>Create Plan</h2>
+  <div className="form-row">
+    <div className="form-group">
+      <label htmlFor="planName">Plan Name:</label>
+      <input
+        type="text"
+        id="planName"
+        name="planName"
+        value={formData.planName}
+        onChange={handleChange}
+        required
+      />
+    </div>
+    <div className="form-group">
+      <label htmlFor="department">Department:</label>
+      <select
+        id="department"
+        name="department"
+        value={formData.department}
+        onChange={handleChange}
+        required
+      >
+        <option value="">Select Department</option>
+        <option value="HR">HR</option>
+        <option value="IT">IT</option>
+        <option value="Finance">Finance</option>
+        <option value="Marketing">Marketing</option>
+      </select>
+    </div>
+  </div>
+  <div className="form-row">
+    <div className="form-group">
+      <label htmlFor="description">Description:</label>
+      <input
+        type="text"
+        id="description"
+        name="description"
+        value={formData.description}
+        onChange={handleChange}
+        required
+      />
+    </div>
+    <div className="form-group">
+      <label htmlFor="moduleID">Module:</label>
+      <select
+        id="moduleID"
+        name="moduleID"
+        value={formData.moduleID}
+        onChange={handleChange}
+        required
+      >
+        <option value="">Select Module</option>
+        {modules.map(module => (
+          <option key={module._id} value={module._id}>{module.moduleName}</option>
+        ))}
+      </select>
+    </div>
+  </div>
+  <div className="form-row">
+    <div className="form-group">
+      <label htmlFor="startDate">Start Date:</label>
+      <input
+        type="datetime-local"
+        id="startDate"
+        name="startDate"
+        value={formData.startDate}
+        onChange={handleStartDateChange}
+        required
+      />
+    </div>
+    <div className="form-group">
+      <label htmlFor="endDate">End Date:</label>
+      <input
+        type="datetime-local"
+        id="endDate"
+        name="endDate"
+        value={formData.endDate}
+        onChange={handleEndDateChange}
+        required
+      />
+    </div>
+  </div>
+  <div className="button-row">
+    <button type="submit" className="submit-btn">Create Plan</button>
+    <button type="button" onClick={() => setShowForm(false)} className="cancel-btn">Cancel</button>
+  </div>
+</form>
 
-                        <button type="submit" className="submit-btn" >Create Plan</button>
-                        <button type="button" onClick={() => setShowForm(false)} className="cancel-btn">Cancel</button>
-                    </form>
+
                 </div>
             )}
 
@@ -323,8 +373,9 @@ const TrainingPlanPage = () => {
                                         return null;
                                     })}
 
-                                    <td>{new Date(plan.schedule.startDate).toLocaleString()}</td>
-                                    <td>{new Date(plan.schedule.endDate).toLocaleString()}</td>
+<td>{plan.schedule && plan.schedule.startDate ? new Date(plan.schedule.startDate).toLocaleString() : '-'}</td>
+<td>{plan.schedule && plan.schedule.endDate ? new Date(plan.schedule.endDate).toLocaleString() : '-'}</td>
+
 
                                     <td>
                                         <button className="edit-btn" onClick={() => handleUpdateFormOpen(plan)}> {/* Handle edit */}
@@ -343,86 +394,93 @@ const TrainingPlanPage = () => {
             {isUpdateMode && updateFormData && (
                 <div className="overlay">
                     <form className="plan-form" onSubmit={handleUpdateSubmit}>
-                        <h2>Update Plan</h2>
-                        {/* Implement fields with pre-filled data */}
-                        <div className="form-group">
-                            <label htmlFor="planName">Plan Name:</label>
-                            <input
-                                type="text"
-                                id="planName"
-                                name="planName"
-                                value={updateFormData.planName}
-                                onChange={handleUpdateChange}
-                                required
-                            />
-                        </div>
-                        <div className="form-group">
-                            <label htmlFor="department">Department:</label>
-                            <select
-                                id="department"
-                                name="department"
-                                value={updateFormData.department}
-                                onChange={handleUpdateChange}
-                                required
-                            >
-                                <option value="">Select Department</option>
-                                <option value="HR">HR</option>
-                                <option value="IT">IT</option>
-                                <option value="Finance">Finance</option>
-                                <option value="Marketing">Marketing</option>
-                            </select>
-                        </div>
-                        <div className="form-group">
-                            <label htmlFor="description">Description:</label>
-                            <input
-                                type="text"
-                                id="description"
-                                name="description"
-                                value={updateFormData.description}
-                                onChange={handleUpdateChange}
-                                required
-                            />
-                        </div>
-                        <div className="form-group">
-                            <label htmlFor="moduleID">Module:</label>
-                            <select
-                                id="moduleID"
-                                name="moduleID"
-                                value={updateFormData.moduleID}
-                                onChange={handleUpdateChange}
-                                required
-                            >
-                                <option value="">Select Module</option>
-                                {modules.map(module => (
-                                    <option key={module._id} value={module._id}>{module.moduleName}</option>
-                                ))}
-                            </select>
-                        </div>
-                        <div className="form-group">
-                            <label htmlFor="startDate">Start Date:</label>
-                            <input
-                                type="datetime-local"
-                                id="startDate"
-                                name="startDate"
-                                value={updateFormData.startDate}
-                                onChange={handleUpdateChange}
-                                required
-                            />
-                        </div>
-                        <div className="form-group">
-                            <label htmlFor="endDate">End Date:</label>
-                            <input
-                                type="datetime-local"
-                                id="endDate"
-                                name="endDate"
-                                value={updateFormData.endDate}
-                                onChange={handleUpdateChange}
-                                required
-                            />
-                        </div>
-                        <button type="submit" className="submit-btn">Update Plan</button>
-                        <button type="button" onClick={handleUpdateFormClose} className="cancel-btn">Cancel</button>
-                    </form>
+  <h2>Create Plan</h2>
+  <div className="form-row">
+    <div className="form-group">
+      <label htmlFor="planName">Plan Name:</label>
+      <input
+        type="text"
+        id="planName"
+        name="planName"
+        value={updateFormData.planName}
+        onChange={handleUpdateChange}
+        required
+      />
+    </div>
+    <div className="form-group">
+      <label htmlFor="department">Department:</label>
+      <select
+        id="department"
+        name="department"
+        value={updateFormData.department}
+        onChange={handleUpdateChange}
+        required
+      >
+        <option value="">Select Department</option>
+        <option value="HR">HR</option>
+        <option value="IT">IT</option>
+        <option value="Finance">Finance</option>
+        <option value="Marketing">Marketing</option>
+      </select>
+    </div>
+  </div>
+  <div className="form-row">
+    <div className="form-group">
+      <label htmlFor="description">Description:</label>
+      <input
+        type="text"
+        id="description"
+        name="description"
+        value={updateFormData.description}
+        onChange={handleUpdateChange}
+        required
+      />
+    </div>
+    <div className="form-group">
+      <label htmlFor="moduleID">Module:</label>
+      <select
+        id="moduleID"
+        name="moduleID"
+        value={updateFormData.moduleID}
+        onChange={handleUpdateChange}
+        required
+      >
+        <option value="">Select Module</option>
+        {modules.map(module => (
+          <option key={module._id} value={module._id}>{module.moduleName}</option>
+        ))}
+      </select>
+    </div>
+  </div>
+  <div className="form-row">
+    <div className="form-group">
+      <label htmlFor="startDate">Start Date:</label>
+      <input
+        type="datetime-local"
+        id="startDate"
+        name="startDate"
+        value={updateFormData.startDate}
+        onChange={handleUpdateChange}
+        required
+      />
+    </div>
+    <div className="form-group">
+      <label htmlFor="endDate">End Date:</label>
+      <input
+        type="datetime-local"
+        id="endDate"
+        name="endDate"
+        value={updateFormData.endDate}
+        onChange={handleUpdateChange}
+        required
+      />
+    </div>
+  </div>
+  <div className="button-row">
+    <button type="submit" className="submit-btn">Create Plan</button>
+    <button type="button" onClick={handleUpdateFormClose} className="cancel-btn">Cancel</button>
+  </div>
+</form>
                 </div>
             )}
         </div>

@@ -1,81 +1,69 @@
 .container {
-    max-width: 900px;
-    margin: auto;
-    padding: 20px;
-    text-align: center;
-  }
-  
-  .title {
-    margin-bottom: 20px;
-  }
-  
-  .create-module-btn {
-    margin-bottom: 20px;
-    padding: 10px 20px;
-    background-color: #5d79fb;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-  }
-  
-  .create-module-btn:hover {
-    background-color: #475bc4;
-  }
-  
-  .overlay {
-    position: fixed;
+  max-width: 900px;
+  margin: auto;
+  padding: 20px;
+}
 
-    background-color: rgba(0, 0, 0, 0.5);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    overflow-y: scroll;
-  }
-  
-  .module-form {
-    position: absolute;
-    top: 10vh; 
-    /* left: 50%; Align the form to the center horizontally */
-    /* transform: translate(0, -50%); Center the form both vertically and horizontally */
-    background-color: white;
-    padding: 20px;
-    border-radius: 5px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    text-align: left;
-    width: 80%; /* Adjust the width of the form as needed */
-    max-width: 600px; /* Set a maximum width for the form */
-    z-index: 9999; /* Ensure the form appears above other elements */
-  }
-  
-  
-  .form-group {
-    margin-bottom: 15px;
-  }
-  
-  select {
-    width: 100%;
-    padding: 10px;
-    font-size: 16px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-  }
-  
-  
-  label {
-    display: block;
-    font-weight: bold;
-    margin-bottom: 5px;
-  }
-  
-  input[type="text"],
-  input[type="url"] {
-    width: 100%;
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-  }
+.module-form {
+  background-color: #f3f3f3;
+  padding: 20px;
+  border-radius: 8px;
+}
+
+.grid-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: 20px;
+}
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+label {
+  font-weight: bold;
+}
+
+input[type="text"],
+input[type="url"],
+select,
+textarea {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 16px;
+}
+
+
+
+.full-width {
+  grid-column: span 2;
+}
+
+.resource-link {
+  display: grid;
+  grid-template-columns: 2fr 3fr 1fr;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+.add-btn,
+.remove-btn {
+  width: fit-content;
+  padding: 8px 16px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  background-color: #5d79fb;
+  color: white;
+}
   
   .submit-btn,
   .cancel-btn {
@@ -150,7 +138,16 @@
   .submit-btn:hover, .cancel-btn:hover {
     background-color: #475bc4;
   }
-  
+  .create-module-btn {
+    display: block;
+    margin: 20px auto;
+    padding: 10px 20px;
+    background-color: #5d79fb;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
     
   .add-btn {
     width: 100%;
@@ -168,16 +165,7 @@
   }
 
       
-  .remove-btn {
-    width: 10%;
-    padding: 10px 0;
-    margin-top: 1px;
-    margin-bottom: 5px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-  }
+
   .remove-btn
   {
     background-color: #ff3535;

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import './TrainingModulePage.css'; // Import CSS file for styling
 import { RiCheckLine } from 'react-icons/ri'; // Import icon for success message
-import { AiFillDelete , AiOutlineEdit } from 'react-icons/ai'; // Import icons for error message and delete button
+import { AiFillDelete, AiOutlineEdit } from 'react-icons/ai'; // Import icons for error message and delete button
 import { createModule, deleteModule, getModules, updateModule } from './services/ModuleAPI'; // Import API functions
 
 const TrainingModulePage = () => {
@@ -43,7 +43,7 @@ const TrainingModulePage = () => {
     setUpdateFormData(module); // Set the data for the update form
     setIsUpdateMode(true); // Set update mode to true
   };
-  
+
   const handleUpdateFormClose = () => {
     setUpdateFormData(null); // Clear the update form data
     setIsUpdateMode(false); // Set update mode to false
@@ -111,10 +111,10 @@ const TrainingModulePage = () => {
 
 
     // Ensure duration is not negative
-    if (name === 'duration' && parseInt(value) < 0) {
+    if (name === 'duration' && (parseInt(value) < 1 || parseInt(value)>8)) {
       return; // Do nothing if duration is negative
     }
-    
+
 
     setFormData((prevData) => ({
       ...prevData,
@@ -125,12 +125,12 @@ const TrainingModulePage = () => {
   };
   const handleUpdateChange = (e) => {
     const { name, value } = e.target;
-  
+
     // Ensure duration is not negative
     if (name === 'duration' && parseInt(value) < 0) {
       return; // Do nothing if duration is negative
     }
-  
+
     setUpdateFormData((prevData) => ({
       ...prevData,
       [name]: value,
@@ -203,85 +203,117 @@ const TrainingModulePage = () => {
       {/* Form for creating module */}
       {showForm && (
         <div className="overlay">
-          <form className="module-form" onSubmit={handleSubmit}>
-            <h2>Create Module</h2>
-            <div className="form-group">
-              <label htmlFor="moduleName">Module Name:</label>
-              <input
-                type="text"
-                id="moduleName"
-                name="moduleName"
-                value={formData.moduleName}
-                onChange={handleChange}
-                required
-              />
-            </div>
-            <div className="form-group">
-              <label htmlFor="description">Description:</label>
-              <input
-                type="text"
-                id="description"
-                name="description"
-                value={formData.description}
-                onChange={handleChange}
-                required
-              />
-            </div>
-            <div className="form-group">
-              <label htmlFor="duration">Duration:</label>
-              <input
-                type="text"
-                id="duration"
-                name="duration"
-                value={formData.duration}
-                onChange={handleChange}
-                placeholder="e.g., 1 hour"
-                required
-              />
-            </div>
-
-            <div className="form-group">
-              <label htmlFor="difficultyLevel">Difficulty Level:</label>
-              <select
-                id="difficultyLevel"
-                name="difficultyLevel"
-                value={formData.difficultyLevel}
-                onChange={handleChange}
-                required
-              >
-                <option value="">Select Difficulty Level</option>
-                <option value="Beginner">Beginner</option>
-                <option value="Intermediate">Intermediate</option>
-                <option value="Advanced">Advanced</option>
-              </select>
-            </div>
-            <div className="form-group">
-              <label htmlFor="prerequisites">Prerequisites (separated by comma or newline):</label>
-              <textarea
-                id="prerequisites"
-                name="prerequisites"
-                value={formData.prerequisites}
-                onChange={handleChange}
-                required
-              />
-            </div>
-
-
-            <label htmlFor="resourceLinks">Resources (Enter the Title and URL):</label>
-            {/* Add inputs for other fields */}
-            {formData.resourceLinks.map((link, index) => (
-              <div key={index}>
-                <div className="form-group">
-                  <input type="text" name="title" placeholder="Title" value={link.title} onChange={(e) => handleInputChange(index, e)} required />
-                  <input type="text" name="url" placeholder="URL" value={link.url} onChange={(e) => handleInputChange(index, e)} required />
+          <div class="container">
+            <div class="container">
+              <form class="module-form" onSubmit={handleSubmit}>
+                <h2>Create Module</h2>
+                <div class="grid-container">
+                  <div class="form-row">
+                    <div class="form-group">
+                      <label htmlFor="moduleName">Module Name:</label>
+                      <input
+                        type="text"
+                        id="moduleName"
+                        name="moduleName"
+                        value={formData.moduleName}
+                        onChange={handleChange}
+                        required
+                      />
+                    </div>
+                    <div class="form-group">
+                      <label htmlFor="description">Description:</label>
+                      <input
+                        type="text"
+                        id="description"
+                        name="description"
+                        value={formData.description}
+                        onChange={handleChange}
+                        required
+                      />
+                    </div>
+                  </div>
+                  <div class="form-row">
+                    <div class="form-group">
+                      <label htmlFor="duration">Duration:</label>
+                      <input
+                        type="text"
+                        id="duration"
+                        name="duration"
+                        value={formData.duration}
+                        onChange={handleChange}
+                        placeholder="1-8 hours only"
+                        required
+                      />
+                    </div>
+                    <div class="form-group">
+                      <label htmlFor="difficultyLevel">Difficulty Level:</label>
+                      <select
+                        id="difficultyLevel"
+                        name="difficultyLevel"
+                        value={formData.difficultyLevel}
+                        onChange={handleChange}
+                        required
+                      >
+                        <option value="">Select Difficulty Level</option>
+                        <option value="Beginner">Beginner</option>
+                        <option value="Intermediate">Intermediate</option>
+                        <option value="Advanced">Advanced</option>
+                      </select>
+                    </div>
+                  </div>
+                  <div class="form-row">
+                    <div class="form-group full-width">
+                      <label htmlFor="prerequisites">Prerequisites (separated by comma or newline):</label>
+                      <textarea
+                        id="prerequisites"
+                        name="prerequisites"
+                        value={formData.prerequisites}
+                        onChange={handleChange}
+                        required
+                      ></textarea>
+                    </div>
+                  </div>
+                  <div class="form-row">
+                    <div class="form-group full-width">
+                      <label htmlFor="resourceLinks">Resources (Enter the Title and URL):</label>
+                      {formData.resourceLinks.map((link, index) => (
+                        <div class="resource-link" key={index}>
+                          <input
+                            type="text"
+                            name="title"
+                            placeholder="Title"
+                            value={link.title}
+                            onChange={(e) => handleInputChange(index, e)}
+                            required
+                          />
+                          <input
+                            type="url"
+                            name="url"
+                            placeholder="URL"
+                            value={link.url}
+                            onChange={(e) => handleInputChange(index, e)}
+                            required
+                          />
+                          {formData.resourceLinks.length !== 1 && (
+                            <button type="button" onClick={() => handleRemoveLink(index)} class="remove-btn">
+                              Remove
+                            </button>
+                          )}
+                        </div>
+                      ))}
+                      <button type="button" onClick={handleAddLink} class="add-btn">Add Resource Link</button>
+                    </div>
+                  </div>
+                  <div class="form-row">
+                    <button type="submit" class="submit-btn">Create Module</button>
+                    <button type="button" onClick={() => setShowForm(false)} class="cancel-btn">Cancel</button>
+                  </div>
                 </div>
-                {formData.resourceLinks.length !== 1 && <button type="button" onClick={() => handleRemoveLink(index)} className='remove-btn'>Remove</button>}
-              </div>
-            ))}
-            <button type="button" onClick={handleAddLink} className="add-btn">Add Resource Link</button>
-            <button type="submit" className="submit-btn" >Create Module</button>
-            <button type="button" onClick={() => setShowForm(false)} className="cancel-btn">Cancel</button>
-          </form>
+              </form>
+            </div>
+
+          </div>
+
         </div>
       )}
 
@@ -309,7 +341,7 @@ const TrainingModulePage = () => {
         </div>
       )}
 
-<div className="module-table">
+      <div className="module-table">
         <h2>Created Modules</h2>
         <table>
           <thead>
@@ -342,7 +374,7 @@ const TrainingModulePage = () => {
                     </ul>
                   </td>
                   <td>
-                    <button className="edit-btn" onClick={() =>  handleUpdateFormOpen(module)}> {/* Handle edit */}
+                    <button className="edit-btn" onClick={() => handleUpdateFormOpen(module)}> {/* Handle edit */}
                       <AiOutlineEdit />
                     </button>
                     <button className="delete-btn" onClick={() => handleDelete(module._id)}>
@@ -357,10 +389,13 @@ const TrainingModulePage = () => {
       </div>
       {isUpdateMode && updateFormData && (
   <div className="overlay">
-    <form className="module-form" onSubmit={handleUpdateSubmit}>
-      <h2>Update Module</h2>
-      {/* Implement fields with pre-filled data */}
-      <div className="form-group">
+     <div class="container">
+    <div className="container">
+      <form className="module-form" onSubmit={handleUpdateSubmit}>
+        <h2>Update Module</h2>
+        <div className="grid-container">
+          <div className="form-row">
+            <div className="form-group">
               <label htmlFor="moduleName">Module Name:</label>
               <input
                 type="text"
@@ -382,6 +417,8 @@ const TrainingModulePage = () => {
                 required
               />
             </div>
+          </div>
+          <div className="form-row">
             <div className="form-group">
               <label htmlFor="duration">Duration:</label>
               <input
@@ -394,7 +431,6 @@ const TrainingModulePage = () => {
                 required
               />
             </div>
-
             <div className="form-group">
               <label htmlFor="difficultyLevel">Difficulty Level:</label>
               <select
@@ -410,7 +446,9 @@ const TrainingModulePage = () => {
                 <option value="Advanced">Advanced</option>
               </select>
             </div>
-            <div className="form-group">
+          </div>
+          <div className="form-row">
+            <div className="form-group full-width">
               <label htmlFor="prerequisites">Prerequisites (separated by comma or newline):</label>
               <textarea
                 id="prerequisites"
@@ -420,25 +458,55 @@ const TrainingModulePage = () => {
                 required
               />
             </div>
-
-
-            <label htmlFor="resourceLinks">Resources (Enter the Title and URL):</label>
-            {/* Add inputs for other fields */}
-            {updateFormData.resourceLinks.map((link, index) => (
-              <div key={index}>
-                <div className="form-group">
-                  <input type="text" name="title" placeholder="Title" value={link.title} onChange={(e) => handleInputChange(index, e)} required />
-                  <input type="text" name="url" placeholder="URL" value={link.url} onChange={(e) => handleInputChange(index, e)} required />
+          </div>
+          <div className="form-row">
+            <div className="form-group full-width">
+              <label htmlFor="resourceLinks">Resources (Enter the Title and URL):</label>
+              {updateFormData.resourceLinks.map((link, index) => (
+                <div className="resource-link" key={index}>
+                  <input
+                    type="text"
+                    name="title"
+                    placeholder="Title"
+                    value={link.title}
+                    onChange={(e) => handleInputChange(index, e)}
+                    required
+                  />
+                  <input
+                    type="text"
+                    name="url"
+                    placeholder="URL"
+                    value={link.url}
+                    onChange={(e) => handleInputChange(index, e)}
+                    required
+                  />
+                  {updateFormData.resourceLinks.length !== 1 && (
+                    <button type="button" onClick={() => handleRemoveLink(index)} className="remove-btn">
+                      Remove
+                    </button>
+                  )}
                 </div>
-                {updateFormData.resourceLinks.length !== 1 && <button type="button" onClick={() => handleRemoveLink(index)} className='remove-btn'>Remove</button>}
-              </div>
-            ))}
-      <button type="submit" className="submit-btn">Update Module</button>
-      <button type="button" onClick={handleUpdateFormClose} className="cancel-btn">Cancel</button>
-    </form>
+              ))}
+              <button type="button" onClick={handleAddLink} className="add-btn">
+                Add Resource Link
+              </button>
+            </div>
+          </div>
+          <div className="form-row">
+            <button type="submit" className="submit-btn">
+              Update Module
+            </button>
+            <button type="button" onClick={handleUpdateFormClose} className="cancel-btn">
+              Cancel
+            </button>
+          </div>
+        </div>
+      </form>
+    </div>
+    </div>
   </div>
-  
 )}
+
     </div>
   );
 };
