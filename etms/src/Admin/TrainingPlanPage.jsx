@@ -168,22 +168,28 @@ const TrainingPlanPage = () => {
 
     
     const isDateConflict = (startDate, endDate) => {
-        const newStartDate = new Date(startDate);
-        const newEndDate = new Date(endDate);
-
-        // Check for conflicts with existing plans
-        return plans.some(plan => {
-            const existingStartDate = new Date(plan.startDate);
-            const existingEndDate = new Date(plan.endDate);
-
-            // Check if new dates overlap with existing plan's dates
-            return (
-                (newStartDate >= existingStartDate && newStartDate <= existingEndDate) ||
-                (newEndDate >= existingStartDate && newEndDate <= existingEndDate) ||
-                (newStartDate <= existingStartDate && newEndDate >= existingEndDate)
-            );
-        });
-    };
+      const newStartDate = new Date(startDate);
+      const newEndDate = new Date(endDate);
+  
+      // Check for conflicts with existing plans
+      const conflictDetected = plans.some(plan => {
+          const existingStartDate = new Date(plan.startDate);
+          const existingEndDate = new Date(plan.endDate);
+  
+          // Check if new dates overlap with existing plan's dates (including time)
+          return (
+              (newStartDate < existingEndDate && newEndDate > existingStartDate) ||
+              (newStartDate.getTime() === existingStartDate.getTime() && newEndDate.getTime() === existingEndDate.getTime())
+          );
+      });
+  
+      // Show alert if conflict is detected
+      if (conflictDetected) {
+          alert("There is a date and/or time conflict with existing plans!");
+      } else {
+          return
+      }
+  };
 
     const handleStartDateChange = (e) => {
         const { value } = e.target;

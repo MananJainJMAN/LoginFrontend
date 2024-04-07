@@ -4,6 +4,7 @@ import { RiCheckLine } from 'react-icons/ri'; // Import icon for success message
 import { AiFillDelete, AiOutlineEdit } from 'react-icons/ai'; // Import icons for error message and delete button
 import { createModule, deleteModule, getModules, updateModule } from './services/ModuleAPI'; // Import API functions
 
+
 const TrainingModulePage = () => {
   const [formData, setFormData] = useState({
     moduleName: '',
