@@ -82,6 +82,9 @@ const UploadFile = () => {
     };
 
     return (
+        <div>
+                  <h1 className="title">Manage Training Scores</h1>
+       
         <div
             className={`upload-container ${isDragging ? 'dragging' : ''}`}
             onDragEnter={handleDragEnter}
@@ -127,6 +130,7 @@ const UploadFile = () => {
             <div className="button-container">
                 <button onClick={handleUpload} className="upload-button">Upload</button>
             </div>
+        </div>
         </div>
     );
 };
