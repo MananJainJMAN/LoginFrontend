@@ -27,6 +27,8 @@ import CreateUserPage from './CreateUserPage'; // Import the CreateUserPage comp
 import TrainingModulePage from './TrainingModulePage'
 import TrainingPlanPage from './TrainingPlanPage';
 import TrainingAssessmentPage from './TrainingAssessment';
+import Dashboard from './Dashboards';
+import SpaceDashboardIcon from '@mui/icons-material/SpaceDashboard';
 import {useNavigate} from 'react-router-dom'
 import Cookies from 'js-cookie';
 const drawerWidth = 240;
@@ -144,6 +146,7 @@ const MiniDrawer = () => {
     'Training Plan': <TrainingPlanPage/>,
     'Training Module': <TrainingModulePage/>,
     'Assessment Score': <TrainingAssessmentPage/>,
+    'Dashboard': <Dashboard/>
   };
 
   // Message to be displayed when no module is clicked
@@ -217,6 +220,7 @@ const MiniDrawer = () => {
                   {index === 1 && <EventNoteIcon />}
                   {index === 2 && <MenuBookIcon />}
                   {index === 3 && <AssessmentIcon />}
+                  {index === 4 && <SpaceDashboardIcon/>}
                 </ListItemIcon>
                 <ListItemText primary={text} sx={{ opacity: open ? 1 : 0 }} />
               </ListItemButton>
