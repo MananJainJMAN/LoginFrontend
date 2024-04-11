@@ -27,9 +27,11 @@ import CreateUserPage from './CreateUserPage'; // Import the CreateUserPage comp
 import TrainingModulePage from './TrainingModulePage'
 import TrainingPlanPage from './TrainingPlanPage';
 import TrainingAssessmentPage from './TrainingAssessment';
+import Prediction from './Prediciton'
 import Dashboard from './Dashboards';
 import SpaceDashboardIcon from '@mui/icons-material/SpaceDashboard';
 import {useNavigate} from 'react-router-dom'
+import SmartToyIcon from '@mui/icons-material/SmartToy';
 import Cookies from 'js-cookie';
 const drawerWidth = 240;
 
@@ -142,11 +144,14 @@ const MiniDrawer = () => {
 
   // Define pages for each option in the drawer
   const pages = {
+  
     'Create User': <CreateUserPage />,
     'Training Plan': <TrainingPlanPage/>,
     'Training Module': <TrainingModulePage/>,
     'Assessment Score': <TrainingAssessmentPage/>,
-    'Dashboard': <Dashboard/>
+    'Dashboard': <Dashboard/>,
+    'Prediction':<Prediction/>
+  
   };
 
   // Message to be displayed when no module is clicked
@@ -221,6 +226,7 @@ const MiniDrawer = () => {
                   {index === 2 && <MenuBookIcon />}
                   {index === 3 && <AssessmentIcon />}
                   {index === 4 && <SpaceDashboardIcon/>}
+                  {index === 5&& <SmartToyIcon/>}
                 </ListItemIcon>
                 <ListItemText primary={text} sx={{ opacity: open ? 1 : 0 }} />
               </ListItemButton>
