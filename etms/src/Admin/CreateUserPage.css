@@ -195,16 +195,6 @@
     animation: spin 1s linear infinite;
   }
   
-  .success-message {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background-color: #dff0d8; /* Success message background color */
-  color: #3c763d; /* Success message text color */
-  padding: 10px;
-  margin-bottom: 10px;
-}
-
 .overlay {
     position: fixed;
     top: 0;

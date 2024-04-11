@@ -115,6 +115,14 @@ textarea {
   tr:hover {
     background-color: #f8f6e3;
   }
+
+  .success-message {
+    background-color: #28a745;
+    color: #fff;
+    border-radius: 5px;
+    height: 20%;
+    text-align: center;
+  }
   
   .submit-btn, .cancel-btn {
     width: 100%;

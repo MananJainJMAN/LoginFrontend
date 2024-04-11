@@ -71,7 +71,7 @@
 
 
 .error-message,
-.success-message {
+.file-success-message {
   display: flex;
   align-items: center;
   justify-content: space-between;

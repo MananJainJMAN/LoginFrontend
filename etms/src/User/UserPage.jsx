@@ -184,7 +184,7 @@ const MiniDrawer = () => {
           <IconButton onClick={handleDrawerClose}>
             {theme.direction === 'rtl' ? <ChevronRightIcon /> : <ChevronLeftIcon />}
           </IconButton>
-          <p>Name</p>
+          <p>ETMS</p>
           <Avatar sx={{ ml: 'auto', bgcolor: '#5d79fb' }}>
             <ModelTrainingSharpIcon />
           </Avatar>

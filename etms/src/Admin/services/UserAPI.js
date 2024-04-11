@@ -34,7 +34,6 @@ const getUser = async () => {
 };
 const resetPassword = async (token, newPassword) => {
   try {
-    console.log(newPassword)
     const response = await axiosInstance.patch(`/user/resetPassword/${token}`, { newPassword });
     return response.data;
   } catch (error) {
@@ -48,7 +47,6 @@ const login  = async(loginData)=>
   try
   {
     const response = await axiosInstance.post('/user/login',loginData)
-    console.log(response)
     return response.data;
 
   }
@@ -62,13 +60,15 @@ const forgotPassword = async(email)=>
 {
   try
   {
-    console.log(email)
     const response = await axiosInstance.post('user/forgotPassword',email)
     console.log(response)
     return response.data
 
   }
   catch(error)
+
+
+  
   {
 
     throw new Error('Something went wrong')

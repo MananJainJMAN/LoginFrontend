@@ -29,7 +29,7 @@ const CreateUserPage = () => {
     };
 
     fetchUsers();
-  }, [users]); // Fetch users only on component mount (empty dependency array)
+  }, []); // Fetch users only on component mount (empty dependency array)
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -70,6 +70,8 @@ const CreateUserPage = () => {
 
   const filteredUsers = users.filter(user => {
     return (
+      user &&
+      user.email &&
       user.email.toLowerCase().includes(searchTerm.toLowerCase()) &&
       (filterDepartment === '' || user.department === filterDepartment)
     );
@@ -167,7 +169,6 @@ const CreateUserPage = () => {
 
       {isSuccess && (
         <div className="success-message">
-          <RiCheckLine className="tick-icon" />
           User created successfully
         </div>
       )}

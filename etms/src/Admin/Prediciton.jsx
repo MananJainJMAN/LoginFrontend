@@ -68,7 +68,7 @@ function Prediction() {
                   />
             </div>
             <div style={gridItemStyle}>
-  <label style={labelStyle}>Number of Examples:</label>
+  <label style={labelStyle}>Number of Practical Sessions:</label>
   <input
     type="number"
     name="Number of Examples"

@@ -104,7 +104,7 @@ const UploadFile = () => {
                 </div>
             )}
             {uploadSuccess && (
-                <div className="success-message">
+                <div className="file-success-message">
                     <p>{uploadSuccess}</p>
                     <AiOutlineClose onClick={() => setUploadSuccess(null)} />
                 </div>

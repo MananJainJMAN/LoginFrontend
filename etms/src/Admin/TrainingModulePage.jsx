@@ -328,7 +328,6 @@ const TrainingModulePage = () => {
       {/* Success message */}
       {isSuccess && (
         <div className="success-message">
-          <RiCheckLine className="tick-icon" />
           Module created successfully
         </div>
       )}

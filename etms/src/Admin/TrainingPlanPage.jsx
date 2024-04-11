@@ -335,7 +335,6 @@ const TrainingPlanPage = () => {
             {/* Success message */}
             {isSuccess && (
                 <div className="success-message">
-                    <RiCheckLine className="tick-icon" />
                     Plan created successfully
                 </div>
             )}
