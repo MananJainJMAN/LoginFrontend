@@ -170,6 +170,8 @@ const TrainingPlanPage = () => {
     const isDateConflict = (startDate, endDate) => {
       const newStartDate = new Date(startDate+':30');
       const newEndDate = new Date(endDate+':30');
+
+      const ValidSchedule = newStartDate < newEndDate 
   
       // Check for conflicts with existing plans
       const conflictDetected = plans.some(plan => {
@@ -191,12 +193,12 @@ const TrainingPlanPage = () => {
           newEndDate.getTime() === existingEndDate.getTime();
 
       // Return true if there's any type of conflict detected
-      return isOverlap || isExactMatch;
+      return ValidSchedule||isOverlap || isExactMatch;
       });
       console.log(conflictDetected)
       // Show alert if conflict is detected
       if (conflictDetected) {
-          alert("There is a date and/or time conflict with existing plans!");
+          alert("Enter the Valid Date / There might be time conflict with other plans");
       } else {
           return
       }
