@@ -134,3 +134,8 @@ a:hover, a:focus {
 .card[data-color="orange"] .category {
     color: #e95e37;
 }
+
+.module_container{
+    display:flex;
+    flex-wrap:wrap;
+}

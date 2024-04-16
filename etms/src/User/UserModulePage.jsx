@@ -40,7 +40,7 @@ const ModuleCards = () => {
           value={searchQuery}
           onChange={e => setSearchQuery(e.target.value)}
         />
-        <div className="row">
+        <div className="module_container ">
           {/* Render filtered modules */}
           {filteredModules.map(module => (
             <ModuleCard

@@ -38,18 +38,36 @@ const SignInSide = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
+      if(formData.password==='' || formData.email===''){
+        setSnackbarSeverity('error');
+        setSnackbarMessage('Enter your credentials!!' );
+        setSnackbarOpen(true);
+        return 
+      }
       const response = await login(formData);
       const token = response.token;
       const role = response.role;
+
 
       // Store token in a cookie
       Cookies.set('token', token, { expires: 10000 }); // Set cookie expiration as needed
 
       // Redirect based on user role
       if (role === 'Admin') {
-        navigate('/admin');
+        setSnackbarSeverity('success');
+        setSnackbarMessage('Logged in as Admin!!' );
+        setSnackbarOpen(true);
+        setTimeout(() => {
+          navigate('/admin');
+        }, 1000);
       } else {
-        navigate('/user');
+        setSnackbarSeverity('success');
+        setSnackbarMessage('Logged in as Employee!!' );
+        setSnackbarOpen(true);
+        setTimeout(() => {
+          navigate('/user');
+        }, 1000);
+       
       }
     } catch (error) {
       setSnackbarSeverity('error');
@@ -125,6 +143,7 @@ const SignInSide = () => {
                 autoComplete="email"
                 autoFocus
                 onChange={handleChange}
+
               />
               <TextField
                 margin="normal"
@@ -136,6 +155,7 @@ const SignInSide = () => {
                 id="password"
                 autoComplete="current-password"
                 onChange={handleChange}
+
               />
               {/* Forgot Password Link */}
               <Typography variant="body2">

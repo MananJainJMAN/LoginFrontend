@@ -72,7 +72,7 @@ const UserTrainingPlanPage = () => {
     return (
         <div>
             <h1>Your Training Plan</h1>
-            <div style={{ height: 500 }}>
+            <div style={{ height: 450 }}>
                 <Calendar
                     localizer={localizer}
                     events={transformData()}
@@ -82,7 +82,7 @@ const UserTrainingPlanPage = () => {
                         margin: '20px',
                         borderRadius: '10px',
                         boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)',
-                        backgroundColor: '#f8f6e3', // Background color
+                        backgroundColor: '#fcfcfe', // Background color
                         border: '2px solid #5d79fb', // Border color
                         color: '#333', // Text color
                     }}
