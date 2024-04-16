@@ -145,13 +145,14 @@ const MiniDrawer = () => {
 
   // Define pages for each option in the drawer
   const pages = {
-  
+    'Dashboard': <Dashboard/>,
     'Create User': <CreateUserPage />,
     'Training Plan': <TrainingPlanPage/>,
     'Training Module': <TrainingModulePage/>,
     'Assessment Score': <TrainingAssessmentPage/>,
-    'Dashboard': <Dashboard/>,
-    'Prediction':<Prediction/>
+   
+    'Prediction':<Prediction/>,
+
   
   };
 
@@ -222,12 +223,12 @@ const MiniDrawer = () => {
                     justifyContent: 'center',
                   }}
                 >
-                  {index === 0 && <PersonAddIcon />}
-                  {index === 1 && <EventNoteIcon />}
-                  {index === 2 && <MenuBookIcon />}
-                  {index === 3 && <AssessmentIcon />}
-                  {index === 4 && <SpaceDashboardIcon/>}
-                  {index === 5&& <SmartToyIcon/>}
+                  {index === 0 && <SpaceDashboardIcon/>}
+                  {index === 1 && <PersonAddIcon />}
+                  {index === 2 && <EventNoteIcon />}
+                  {index === 3 && <MenuBookIcon />}
+                  {index === 4 && <AssessmentIcon />}
+                   {index === 5 && <SmartToyIcon/>}
                 </ListItemIcon>
                 <ListItemText primary={text} sx={{ opacity: open ? 1 : 0 }} />
               </ListItemButton>

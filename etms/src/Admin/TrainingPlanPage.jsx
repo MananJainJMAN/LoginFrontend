@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import './TrainingPlanPage.css'; // Import CSS file for styling
-import { RiCheckLine } from 'react-icons/ri'; // Import icon for success message
 import { AiFillDelete, AiOutlineEdit } from 'react-icons/ai'; // Import icons for error message and delete button
 import { createPlan, deletePlan, getPlans, updatePlan } from './services/PlanAPI'; // Import API functions
 import { getModules } from './services/ModuleAPI'; // Import API function to get modules

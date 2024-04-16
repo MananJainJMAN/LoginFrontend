@@ -18,10 +18,10 @@ const ModuleCard = ({ title, description, duration, difficultyLevel, prerequisit
           <div className="content">
             <h3 className="title">{title} <span role="img" aria-label="Book">📚</span></h3>
             <h6 className="description">{description}</h6> 
-            <h6 className="duration">Duration:</h6>  <p> {duration} hour(s)<span role="img" aria-label="Clock">⏰</span></p>
-            <h6 className="difficulty">Difficulty Level:</h6> <p>{difficultyLevel} <span role="img" aria-label="Star">⭐️</span></p>
-            <h6 className="prerequisites">Prerequisites:</h6>  <p>{prerequisites.join(', ')} <span role="img" aria-label="Link"></span></p>
-            <h6 className="resource-links">Resource Links:</h6>
+            <h4  className="duration">Duration:</h4>  <p> {duration} hour(s)<span role="img" aria-label="Clock">⏰</span></p>
+            <h4 className="difficulty">Difficulty Level:</h4> <p>{difficultyLevel} <span role="img" aria-label="Star">⭐️</span></p>
+            <h4 className="prerequisites">Prerequisites:</h4>  <p>{prerequisites.join(', ')} <span role="img" aria-label="Link"></span></p>
+            <h4 className="resource-links">Resource Links:</h4 >
             <ul>
               {resourceLinks.map((link, index) => (
                 <li key={index}>

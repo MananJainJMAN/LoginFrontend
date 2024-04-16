@@ -31,9 +31,6 @@ const UserTrainingPlanPage = () => {
             // Check if the event spans multiple days
             const isMultiDayEvent = !dayjs(start).isSame(dayjs(end), 'day');
 
-            // Set allDay property based on whether the event spans multiple days
-            const allDay = isMultiDayEvent ? false : true;
-
             // Calculate difference in milliseconds
             const diffInMs = end - start;
 
